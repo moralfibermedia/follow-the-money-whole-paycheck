@@ -652,6 +652,134 @@ body {
   100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
 }
 
+
+/* FIGHTERS SECTION */
+.fighter-link.full-list-link {
+  border-style: dashed;
+  border-color: var(--gold);
+}
+.fighter-link.full-list-link:hover {
+  border-style: solid;
+  border-color: var(--gold);
+  background: var(--gold);
+  color: white;
+}
+.fighter-link.full-list-link:hover .fighter-icon {
+  background: rgba(255,255,255,0.2);
+}
+.fighter-link.full-list-link .fighter-icon {
+  background: var(--gold);
+}
+.fighters-section {
+  margin-top: 24px;
+  animation: fadeIn 0.5s 0.55s ease both;
+}
+.fighters-toggle {
+  width: 100%;
+  background: white;
+  border: 3px solid var(--ink);
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+.fighters-toggle:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.fighters-toggle:hover .fighters-arrow { color: var(--paper); }
+.fighters-toggle:hover .fighters-teaser { color: rgba(255,255,255,0.6); }
+.fighters-toggle-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+.fighters-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 900;
+}
+.fighters-teaser {
+  font-family: 'Source Serif 4', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+.fighters-arrow {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--red);
+  transition: transform 0.3s, color 0.2s;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+.fighters-toggle.open .fighters-arrow {
+  transform: rotate(180deg);
+}
+.fighters-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  border: 3px solid var(--ink);
+  border-top: none;
+}
+.fighters-list.open {
+  max-height: 2000px;
+}
+.fighters-list-inner {
+  padding: 20px 24px;
+  background: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+.fighter-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1.5px solid var(--rule);
+  transition: all 0.15s;
+}
+.fighter-link:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+.fighter-link:hover .fighter-icon { background: var(--red); }
+.fighter-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.fighter-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.fighter-desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -972,13 +1100,13 @@ body {
       <a href="https://www.opensecrets.org/orgs/publix-super-markets/recipients?id=D000028488" target="_blank">Publix — OpenSecrets</a>
     </div>
     <button class="share-btn victory-share" onclick="shareGame()">📤 Share This Puzzle</button>
-    <a class="more-btn victory-more" href="https://puzzles.moralfibermedia.com">More Puzzles →</a>
+    <a class="more-btn victory-more" href="https://follow-the-money-index.moralfibermedia.com">More Puzzles →</a>
   </div>
 
   <div class="button-row">
     <button class="reset-btn" onclick="resetGame()">Reset Puzzle</button>
     <button class="share-btn" onclick="shareGame()">📤 Share Puzzle</button>
-    <a class="more-btn" href="https://puzzles.moralfibermedia.com">More Puzzles →</a>
+    <a class="more-btn" href="https://follow-the-money-index.moralfibermedia.com">More Puzzles →</a>
   </div>
 
   <!-- SHARE & FOLLOW -->
@@ -1021,6 +1149,57 @@ body {
         <div class="inspired-url">ash.harvard.edu</div>
       </div>
     </a>
+  </div>
+
+
+  <!-- PRO-DEMOCRACY FIGHTERS -->
+  <div class="fighters-section">
+    <button class="fighters-toggle" onclick="toggleFighters(this)">
+      <div class="fighters-toggle-left">
+        <div class="fighters-label">Pro-Democracy Fighters</div>
+        <div class="fighters-teaser">People and organizations on the front lines</div>
+      </div>
+      <div class="fighters-arrow">▼</div>
+    </button>
+    <div class="fighters-list" id="fightersList">
+      <div class="fighters-list-inner">
+        <a class="fighter-link" href="https://www.youtube.com/briantylercohen" target="_blank">
+          <div class="fighter-icon">✊</div>
+          <div>
+            <div class="fighter-name">Brian Tyler Cohen</div>
+            <div class="fighter-desc">Political commentary · YouTube</div>
+          </div>
+        </a>
+        <a class="fighter-link" href="https://www.inequalitymedia.org/" target="_blank">
+          <div class="fighter-icon">✊</div>
+          <div>
+            <div class="fighter-name">Inequality Media</div>
+            <div class="fighter-desc">Robert Reich · Economic explainers</div>
+          </div>
+        </a>
+        <a class="fighter-link" href="https://kimberlywehle.com/" target="_blank">
+          <div class="fighter-icon">✊</div>
+          <div>
+            <div class="fighter-name">Kimberly Wehle</div>
+            <div class="fighter-desc">Constitutional law · Author · Legal analyst</div>
+          </div>
+        </a>
+        <a class="fighter-link" href="https://www.youtube.com/@GlennKirschner2" target="_blank">
+          <div class="fighter-icon">✊</div>
+          <div>
+            <div class="fighter-name">Glenn Kirschner</div>
+            <div class="fighter-desc">Justice Matters · Former federal prosecutor</div>
+          </div>
+        </a>
+        <a class="fighter-link full-list-link" href="https://fighters-index.moralfibermedia.com" target="_blank">
+          <div class="fighter-icon">→</div>
+          <div>
+            <div class="fighter-name">See the Full List</div>
+            <div class="fighter-desc">All pro-democracy fighters</div>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- LICENSE BLOCK -->
@@ -1306,6 +1485,12 @@ function showShareConfirm() {
       btn.classList.remove('copied');
     }, 2500);
   });
+}
+
+function toggleFighters(btn) {
+  const list = document.getElementById('fightersList');
+  btn.classList.toggle('open');
+  list.classList.toggle('open');
 }
 </script>
 </body>
